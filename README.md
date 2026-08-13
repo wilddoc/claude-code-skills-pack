@@ -69,6 +69,13 @@ Claude Code picks it up automatically — invoke it by name (`/commit-message`) 
 | [`dockerfile-review`](skills/dockerfile-review/SKILL.md) | Finds secrets baked into layers, cache-busting instruction order, and avoidable image bloat — without reflexively telling you to switch to Alpine. |
 | [`n-plus-one-queries`](skills/n-plus-one-queries/SKILL.md) | Finds N+1 query patterns in ORM code, including the ones hidden behind serializers and computed properties — and verifies the relation isn't already eager-loaded before flagging it. |
 
+### Frontend
+
+| Skill | What it does |
+|---|---|
+| [`accessibility-audit`](skills/accessibility-audit/SKILL.md) | Finds a11y barriers ranked by who gets locked out — keyboard traps, unnamed controls, killed focus outlines — and won't assert contrast violations it can't verify statically. |
+| [`bundle-size-audit`](skills/bundle-size-audit/SKILL.md) | Finds imports that defeat tree shaking, missing code splitting, and heavy dependencies — ordered by bytes saved, and explicit about which numbers are measured vs. inferred. |
+
 Each skill is a single self-contained `SKILL.md` — read it before installing if you want to see exactly what it will and won't do.
 
 ## What this looks like in practice
