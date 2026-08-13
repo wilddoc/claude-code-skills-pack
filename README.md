@@ -28,6 +28,8 @@ Claude Code picks it up automatically — invoke it by name (`/commit-message`) 
 | [`changelog-entry`](skills/changelog-entry/SKILL.md) | Generates a `CHANGELOG.md` entry from commits since your last tag, grouped by effect (Added/Fixed/Changed/Removed). |
 | [`pr-description`](skills/pr-description/SKILL.md) | Drafts a PR title and description from your branch's diff against its base — flags mixed-concern branches instead of describing a grab-bag as one clean change. |
 | [`todo-sweep`](skills/todo-sweep/SKILL.md) | Finds TODO/FIXME/XXX/HACK comments across the codebase and triages them into stale / low-risk / risky, as a single table. Read-only — never edits your code. |
+| [`test-coverage-gaps`](skills/test-coverage-gaps/SKILL.md) | Finds critical code paths with no test coverage, prioritized by risk — not a raw coverage-percentage chase. |
+| [`error-message-audit`](skills/error-message-audit/SKILL.md) | Flags user-facing error messages that leave people stuck, with concrete rewrites. |
 
 Each skill is a single self-contained `SKILL.md` — read it before installing if you want to see exactly what it will and won't do.
 
