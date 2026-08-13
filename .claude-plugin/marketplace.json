@@ -1,0 +1,37 @@
+{
+  "name": "claude-code-skills-pack",
+  "id": "claude-code-skills-pack",
+  "owner": {
+    "name": "wilddoc"
+  },
+  "metadata": {
+    "description": "Free, ready-to-use Claude Code skills for git workflow, testing, and code quality maintenance",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "skills-pack",
+      "source": "./",
+      "description": "Ten practical Claude Code skills covering git workflow (commit messages, changelogs, PR descriptions, regression bisect), testing (coverage gaps, flaky test triage, refactor safety nets), and code quality (TODO sweeps, error message audits, log noise audits). Each skill specifies the judgment calls, not just the happy path.",
+      "version": "1.0.0",
+      "author": {
+        "name": "wilddoc"
+      },
+      "homepage": "https://github.com/wilddoc/claude-code-skills-pack",
+      "keywords": [
+        "git",
+        "commit-message",
+        "changelog",
+        "pull-request",
+        "testing",
+        "flaky-tests",
+        "refactoring",
+        "code-quality",
+        "code-review",
+        "developer-tools"
+      ],
+      "category": "development",
+      "strict": false
+    }
+  ]
+}
