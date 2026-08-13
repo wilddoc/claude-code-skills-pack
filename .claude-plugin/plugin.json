@@ -6,6 +6,7 @@
     "name": "wilddoc"
   },
   "homepage": "https://github.com/wilddoc/claude-code-skills-pack",
+  "repository": "https://github.com/wilddoc/claude-code-skills-pack",
   "license": "MIT",
   "keywords": [
     "git",
