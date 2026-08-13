@@ -4,15 +4,15 @@
     "name": "wilddoc"
   },
   "metadata": {
-    "description": "Free, ready-to-use Claude Code skills for git workflow, testing, code quality, and infrastructure review",
-    "version": "1.1.0"
+    "description": "Free, ready-to-use Claude Code skills for git workflow, testing, code quality, infrastructure, and frontend",
+    "version": "1.2.0"
   },
   "plugins": [
     {
       "name": "skills-pack",
       "source": "./",
-      "description": "Thirteen practical Claude Code skills covering git workflow (commit messages, changelogs, PR descriptions, regression bisect), testing (coverage gaps, flaky test triage, refactor safety nets), code quality (TODO sweeps, error message audits, log noise audits), and infrastructure review (CI workflow audits, Dockerfile review, N+1 query detection). Each skill specifies the judgment calls, not just the happy path.",
-      "version": "1.1.0",
+      "description": "Fifteen practical Claude Code skills covering git workflow (commit messages, changelogs, PR descriptions, regression bisect), testing (coverage gaps, flaky test triage, refactor safety nets), code quality (TODO sweeps, error message audits, log noise audits), infrastructure review (CI workflow audits, Dockerfile review, N+1 query detection), and frontend (accessibility audits, bundle size analysis). Each skill specifies the judgment calls, not just the happy path.",
+      "version": "1.2.0",
       "author": {
         "name": "wilddoc"
       },
@@ -30,6 +30,8 @@
         "ci-cd",
         "docker",
         "database-performance",
+        "accessibility",
+        "performance",
         "developer-tools"
       ],
       "category": "development",
