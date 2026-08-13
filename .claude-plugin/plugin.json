@@ -1,0 +1,21 @@
+{
+  "name": "skills-pack",
+  "description": "Ten practical Claude Code skills for everyday development work. Git workflow: draft commit messages from a staged diff, generate changelog entries from commits since the last tag, write PR descriptions, and find the commit that introduced a regression via bisect. Testing: locate untested code paths ranked by risk, diagnose why a test is flaky rather than retrying it, and build characterization tests before refactoring. Code quality: triage TODO/FIXME comments, audit user-facing error messages, and find logging that leaks secrets or buries signal.",
+  "version": "1.0.0",
+  "author": {
+    "name": "wilddoc"
+  },
+  "homepage": "https://github.com/wilddoc/claude-code-skills-pack",
+  "license": "MIT",
+  "keywords": [
+    "git",
+    "commit-message",
+    "changelog",
+    "pull-request",
+    "testing",
+    "flaky-tests",
+    "refactoring",
+    "code-quality",
+    "developer-tools"
+  ]
+}
