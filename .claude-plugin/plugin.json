@@ -1,7 +1,7 @@
 {
   "name": "skills-pack",
-  "description": "Thirteen practical Claude Code skills for everyday development work. Git workflow: draft commit messages from a staged diff, generate changelog entries from commits since the last tag, write PR descriptions, and find the commit that introduced a regression via bisect. Testing: locate untested code paths ranked by risk, diagnose why a test is flaky rather than retrying it, and build characterization tests before refactoring. Code quality: triage TODO/FIXME comments, audit user-facing error messages, and find logging that leaks secrets or buries signal. Infrastructure: audit CI workflows for secret exposure and checks that pass without verifying, review Dockerfiles for baked-in secrets and cache-busting layer order, and find N+1 query patterns in ORM code.",
-  "version": "1.1.0",
+  "description": "Fifteen practical Claude Code skills for everyday development work. Git workflow: draft commit messages from a staged diff, generate changelog entries from commits since the last tag, write PR descriptions, and find the commit that introduced a regression via bisect. Testing: locate untested code paths ranked by risk, diagnose why a test is flaky rather than retrying it, and build characterization tests before refactoring. Code quality: triage TODO/FIXME comments, audit user-facing error messages, and find logging that leaks secrets or buries signal. Infrastructure: audit CI workflows for secret exposure and checks that pass without verifying, review Dockerfiles for baked-in secrets and cache-busting layer order, find N+1 query patterns in ORM code, audit accessibility barriers, and analyze frontend bundle size.",
+  "version": "1.2.0",
   "author": {
     "name": "wilddoc"
   },
@@ -20,6 +20,8 @@
     "ci-cd",
     "docker",
     "database-performance",
+    "accessibility",
+    "performance",
     "developer-tools"
   ]
 }
