@@ -102,9 +102,11 @@ Most skill files are just happy-path instructions. The useful part is what happe
 
 ## Pro pack
 
-There's a paid companion pack with 6 more advanced skills — security triage, dependency audit, DB migration safety checks, env drift detection, API contract diffing, onboarding doc generation — plus a guide on writing your own skills well: [Claude Code Pro Skills Pack](https://claudedesign.gumroad.com/l/mqggk).
+The skills in this repo save you typing. There's a paid companion pack aimed at a different problem: the mistakes that cost real money.
 
-The skills in *this* repo are complete and free forever; the pro pack is additional, not a crippled version of these.
+[**Claude Code Pro Skills Pack — Production Safety**](https://claudedesign.gumroad.com/l/mqggk) ($7) covers the migration that locks a production table, the column drop that breaks old instances mid-rollout, the secret hardcoded in a config file, the API change that silently breaks every client, and the env var that's `undefined` in a fresh environment. Plus a guide on writing skills that actually trigger.
+
+Everything in *this* repo is complete and free forever — the pro pack is a different job, not a crippled version of these.
 
 ## License
 
