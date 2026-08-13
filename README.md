@@ -61,6 +61,14 @@ Claude Code picks it up automatically — invoke it by name (`/commit-message`) 
 | [`error-message-audit`](skills/error-message-audit/SKILL.md) | Flags user-facing error messages that leave people stuck, with concrete rewrites. |
 | [`log-noise-audit`](skills/log-noise-audit/SKILL.md) | Audits logging for leaked secrets, wrong levels that destroy signal, and messages missing the context you'd need at 3am. |
 
+### Infrastructure & performance
+
+| Skill | What it does |
+|---|---|
+| [`ci-workflow-audit`](skills/ci-workflow-audit/SKILL.md) | Reviews CI config for secret exposure (`pull_request_target`, unpinned actions), checks that pass without verifying anything, and wasted runtime. |
+| [`dockerfile-review`](skills/dockerfile-review/SKILL.md) | Finds secrets baked into layers, cache-busting instruction order, and avoidable image bloat — without reflexively telling you to switch to Alpine. |
+| [`n-plus-one-queries`](skills/n-plus-one-queries/SKILL.md) | Finds N+1 query patterns in ORM code, including the ones hidden behind serializers and computed properties — and verifies the relation isn't already eager-loaded before flagging it. |
+
 Each skill is a single self-contained `SKILL.md` — read it before installing if you want to see exactly what it will and won't do.
 
 ## Why these are written the way they are
