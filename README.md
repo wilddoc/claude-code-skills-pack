@@ -12,7 +12,15 @@ Claude decides whether to use a skill based almost entirely on its `description`
 
 ## Install
 
-Copy any skill folder into your skills directory:
+**As a plugin (all ten skills at once):**
+
+```bash
+/plugin marketplace add wilddoc/claude-code-skills-pack
+```
+
+Then install the `skills-pack` plugin from the marketplace. Updates come through `/plugin` rather than re-copying files.
+
+**Or copy individual skills** if you only want one or two:
 
 ```bash
 # Project-scoped (this repo/project only)
