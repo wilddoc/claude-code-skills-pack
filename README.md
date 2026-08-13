@@ -71,6 +71,31 @@ Claude Code picks it up automatically — invoke it by name (`/commit-message`) 
 
 Each skill is a single self-contained `SKILL.md` — read it before installing if you want to see exactly what it will and won't do.
 
+## What this looks like in practice
+
+You don't invoke these by name unless you want to — Claude triggers them when the task matches. Some real examples:
+
+> **"commit this"**
+> Reads your staged diff and drafts a conventional-commit message. If the diff touches auth, a CSS fix, and a dependency bump, it says so and suggests splitting into three commits instead of writing one message that papers over it.
+
+> **"this test keeps failing in CI but passes locally"**
+> Works out whether it's leaked state between tests, order dependence, a timing assumption, or an actual race condition in the code under test — and tells you plainly when a retry wrapper would be hiding a real bug rather than fixing one.
+
+> **"why is my Docker image 1.8GB?"**
+> Finds the `COPY . .` sitting before `npm install` that busts your layer cache on every source edit, plus the build toolchain shipping in your runtime image. Won't reflexively tell you to switch to Alpine.
+
+> **"review my GitHub Actions"**
+> Flags `pull_request_target` combined with an untrusted checkout (fork code running with your secrets), third-party actions pinned to mutable tags, and the `|| true` on your test command that's been making CI green while verifying nothing.
+
+> **"this endpoint takes 8 seconds"**
+> Finds the N+1 hiding in your serializer — and checks whether the relation is already eager-loaded before flagging it, rather than guessing from the loop shape.
+
+> **"why did search break? it worked last week"**
+> Sets up `git bisect` with an automated predicate script, handles commits that won't build, and explains the mechanism in the commit it lands on instead of just handing you a hash.
+
+> **"I want to refactor this 400-line function"**
+> Writes characterization tests capturing what the code does *today* — including behavior that looks wrong — so you find out immediately if a refactor changes something. Flags suspected bugs separately instead of silently "fixing" them into the baseline.
+
 ## Why these are written the way they are
 
 Most skill files are just happy-path instructions. The useful part is what happens when reality doesn't cooperate, so each skill here specifies the judgment calls explicitly: when to split a commit instead of writing one message, when a "flaky" test is actually catching a real race condition, when a TODO is safe to delete. Failure modes are named and banned directly rather than left implied.
