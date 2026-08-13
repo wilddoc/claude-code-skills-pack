@@ -24,6 +24,8 @@ cp -r skills/commit-message ~/.claude/skills/
 
 Claude Code picks it up automatically — invoke it by name (`/commit-message`) or let Claude trigger it when the task matches the skill's description.
 
+> **New to writing skills?** [`SKILL-REFERENCE.md`](SKILL-REFERENCE.md) is a full reference for the format: every frontmatter field (including `allowed-tools` scoping), where files go, how Claude decides which skill to trigger, and how to debug one that won't fire.
+
 ## What's included
 
 ### Git & code review
