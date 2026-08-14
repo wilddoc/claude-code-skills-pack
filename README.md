@@ -1,124 +1,71 @@
 # Claude Code Skills Pack
 
-Free, ready-to-use [Claude Code](https://claude.com/claude-code) skills — real, working `SKILL.md` files you can drop into a project and use immediately. No filler, no "coming soon" stubs: every skill here does one specific, useful thing well.
+15 skills for [Claude Code](https://claude.com/claude-code). MIT licensed.
 
-If you've been looking for **Claude Code skills examples**, a **SKILL.md template**, or just want your AI agent to stop re-learning the same task every session, start here.
-
-## What's a Claude Code skill?
-
-A skill is a packaged set of instructions Claude Code loads when a task matches its description — a reusable playbook for a recurring task (drafting a commit message, triaging a flaky test, sweeping for TODOs) that you don't want to re-explain every time.
-
-Claude decides whether to use a skill based almost entirely on its `description` field, so a good skill names the concrete situation it applies to rather than a vague category. Each file here is written that way — read one to see the pattern.
+These are markdown instruction files. That's all a skill is. The value, if there is any, is in what they tell Claude to do when the situation isn't clean: when a diff covers three unrelated things, when a "flaky" test is catching a real race condition, when a TODO is load-bearing. Read one before installing it and decide for yourself.
 
 ## Install
-
-**As a plugin (all ten skills at once):**
 
 ```bash
 /plugin marketplace add wilddoc/claude-code-skills-pack
 ```
 
-Then install the `skills-pack` plugin from the marketplace. Updates come through `/plugin` rather than re-copying files.
+Then install `skills-pack`.
 
-**Or copy individual skills** if you only want one or two:
+Or copy a single skill if that's all you want:
 
 ```bash
-# Project-scoped (this repo/project only)
-cp -r skills/commit-message .claude/skills/
-
-# User-scoped (all your projects)
 cp -r skills/commit-message ~/.claude/skills/
 ```
 
-Claude Code picks it up automatically — invoke it by name (`/commit-message`) or let Claude trigger it when the task matches the skill's description.
+`SKILL-REFERENCE.md` covers the file format: frontmatter fields, `allowed-tools` scoping, how triggering works off the description, and why a skill sometimes won't fire.
 
-> **New to writing skills?** [`SKILL-REFERENCE.md`](SKILL-REFERENCE.md) is a full reference for the format: every frontmatter field (including `allowed-tools` scoping), where files go, how Claude decides which skill to trigger, and how to debug one that won't fire.
+## Skills
 
-## What's included
+**Git**
 
-### Git & code review
-
-| Skill | What it does |
+| | |
 |---|---|
-| [`commit-message`](skills/commit-message/SKILL.md) | Drafts a conventional-commit message from your staged diff — reads the actual change, doesn't guess from filenames. |
-| [`changelog-entry`](skills/changelog-entry/SKILL.md) | Generates a `CHANGELOG.md` entry from commits since your last tag, grouped by effect (Added/Fixed/Changed/Removed). |
-| [`pr-description`](skills/pr-description/SKILL.md) | Drafts a PR title and description from your branch's diff against its base — flags mixed-concern branches instead of describing a grab-bag as one clean change. |
-| [`regression-bisect`](skills/regression-bisect/SKILL.md) | Finds the commit that broke something via `git bisect`, including the automated predicate script — and catches the traps (flaky predicate, stale build artifacts) that make bisect confidently wrong. |
+| [`commit-message`](skills/commit-message/SKILL.md) | Conventional commit from your staged diff. Tells you when a diff should be split instead. |
+| [`changelog-entry`](skills/changelog-entry/SKILL.md) | CHANGELOG entry from commits since the last tag, grouped by user-facing effect. |
+| [`pr-description`](skills/pr-description/SKILL.md) | PR title and body from the branch diff. Flags mixed-concern branches. |
+| [`regression-bisect`](skills/regression-bisect/SKILL.md) | `git bisect` with an automated predicate, including exit 125 for commits that won't build. |
 
-### Testing
+**Testing**
 
-| Skill | What it does |
+| | |
 |---|---|
-| [`test-coverage-gaps`](skills/test-coverage-gaps/SKILL.md) | Finds critical code paths with no test coverage, prioritized by risk — not a raw coverage-percentage chase. |
-| [`flaky-test-triage`](skills/flaky-test-triage/SKILL.md) | Diagnoses *why* a test is flaky (real race condition vs. order dependence vs. timing vs. environment) instead of reaching for a retry wrapper that hides a real bug. |
-| [`refactor-safety-net`](skills/refactor-safety-net/SKILL.md) | Builds characterization tests around untested code *before* you refactor it, capturing what the code actually does — including the parts that look wrong. |
+| [`test-coverage-gaps`](skills/test-coverage-gaps/SKILL.md) | Untested paths ranked by risk, not by coverage percentage. |
+| [`flaky-test-triage`](skills/flaky-test-triage/SKILL.md) | Whether it's leaked state, ordering, timing, or an actual race condition. Says when a retry would hide a bug. |
+| [`refactor-safety-net`](skills/refactor-safety-net/SKILL.md) | Characterization tests before a refactor, capturing current behavior including the wrong parts. |
 
-### Code quality & maintenance
+**Code quality**
 
-| Skill | What it does |
+| | |
 |---|---|
-| [`todo-sweep`](skills/todo-sweep/SKILL.md) | Finds TODO/FIXME/XXX/HACK comments and triages them into stale / low-risk / risky, as a single table. Read-only — never edits your code. |
-| [`error-message-audit`](skills/error-message-audit/SKILL.md) | Flags user-facing error messages that leave people stuck, with concrete rewrites. |
-| [`log-noise-audit`](skills/log-noise-audit/SKILL.md) | Audits logging for leaked secrets, wrong levels that destroy signal, and messages missing the context you'd need at 3am. |
+| [`todo-sweep`](skills/todo-sweep/SKILL.md) | TODO/FIXME/HACK triaged stale vs risky. Read-only. |
+| [`error-message-audit`](skills/error-message-audit/SKILL.md) | Error messages that leave users stuck, with rewrites. |
+| [`log-noise-audit`](skills/log-noise-audit/SKILL.md) | Logged secrets, `error` level on expected conditions, failures with no request id. |
 
-### Infrastructure & performance
+**Infrastructure**
 
-| Skill | What it does |
+| | |
 |---|---|
-| [`ci-workflow-audit`](skills/ci-workflow-audit/SKILL.md) | Reviews CI config for secret exposure (`pull_request_target`, unpinned actions), checks that pass without verifying anything, and wasted runtime. |
-| [`dockerfile-review`](skills/dockerfile-review/SKILL.md) | Finds secrets baked into layers, cache-busting instruction order, and avoidable image bloat — without reflexively telling you to switch to Alpine. |
-| [`n-plus-one-queries`](skills/n-plus-one-queries/SKILL.md) | Finds N+1 query patterns in ORM code, including the ones hidden behind serializers and computed properties — and verifies the relation isn't already eager-loaded before flagging it. |
+| [`ci-workflow-audit`](skills/ci-workflow-audit/SKILL.md) | `pull_request_target` with untrusted checkout, unpinned actions, `\|\| true` on the test command. |
+| [`dockerfile-review`](skills/dockerfile-review/SKILL.md) | Secrets in layers, `COPY . .` before dependency install, build tooling in the runtime image. |
+| [`n-plus-one-queries`](skills/n-plus-one-queries/SKILL.md) | N+1s including ones behind serializers and computed properties. Checks the relation isn't already eager-loaded. |
 
-### Frontend
+**Frontend**
 
-| Skill | What it does |
+| | |
 |---|---|
-| [`accessibility-audit`](skills/accessibility-audit/SKILL.md) | Finds a11y barriers ranked by who gets locked out — keyboard traps, unnamed controls, killed focus outlines — and won't assert contrast violations it can't verify statically. |
-| [`bundle-size-audit`](skills/bundle-size-audit/SKILL.md) | Finds imports that defeat tree shaking, missing code splitting, and heavy dependencies — ordered by bytes saved, and explicit about which numbers are measured vs. inferred. |
+| [`accessibility-audit`](skills/accessibility-audit/SKILL.md) | Keyboard traps, controls with no accessible name, killed focus outlines. Won't assert contrast it can't verify. |
+| [`bundle-size-audit`](skills/bundle-size-audit/SKILL.md) | Imports that defeat tree shaking, missing code splitting. Ordered by bytes, honest about measured vs inferred. |
 
-Each skill is a single self-contained `SKILL.md` — read it before installing if you want to see exactly what it will and won't do.
+## Paid pack
 
-## What this looks like in practice
-
-You don't invoke these by name unless you want to — Claude triggers them when the task matches. Some real examples:
-
-> **"commit this"**
-> Reads your staged diff and drafts a conventional-commit message. If the diff touches auth, a CSS fix, and a dependency bump, it says so and suggests splitting into three commits instead of writing one message that papers over it.
-
-> **"this test keeps failing in CI but passes locally"**
-> Works out whether it's leaked state between tests, order dependence, a timing assumption, or an actual race condition in the code under test — and tells you plainly when a retry wrapper would be hiding a real bug rather than fixing one.
-
-> **"why is my Docker image 1.8GB?"**
-> Finds the `COPY . .` sitting before `npm install` that busts your layer cache on every source edit, plus the build toolchain shipping in your runtime image. Won't reflexively tell you to switch to Alpine.
-
-> **"review my GitHub Actions"**
-> Flags `pull_request_target` combined with an untrusted checkout (fork code running with your secrets), third-party actions pinned to mutable tags, and the `|| true` on your test command that's been making CI green while verifying nothing.
-
-> **"this endpoint takes 8 seconds"**
-> Finds the N+1 hiding in your serializer — and checks whether the relation is already eager-loaded before flagging it, rather than guessing from the loop shape.
-
-> **"why did search break? it worked last week"**
-> Sets up `git bisect` with an automated predicate script, handles commits that won't build, and explains the mechanism in the commit it lands on instead of just handing you a hash.
-
-> **"I want to refactor this 400-line function"**
-> Writes characterization tests capturing what the code does *today* — including behavior that looks wrong — so you find out immediately if a refactor changes something. Flags suspected bugs separately instead of silently "fixing" them into the baseline.
-
-## Why these are written the way they are
-
-Most skill files are just happy-path instructions. The useful part is what happens when reality doesn't cooperate, so each skill here specifies the judgment calls explicitly: when to split a commit instead of writing one message, when a "flaky" test is actually catching a real race condition, when a TODO is safe to delete. Failure modes are named and banned directly rather than left implied.
-
-## Pro pack
-
-The skills in this repo save you typing. There's a paid companion pack aimed at a different problem: the mistakes that cost real money.
-
-[**Claude Code Pro Skills Pack — Production Safety**](https://claudedesign.gumroad.com/l/mqggk) ($7) covers the migration that locks a production table, the column drop that breaks old instances mid-rollout, the secret hardcoded in a config file, the API change that silently breaks every client, and the env var that's `undefined` in a fresh environment. Plus a guide on writing skills that actually trigger.
-
-Everything in *this* repo is complete and free forever — the pro pack is a different job, not a crippled version of these.
-
-## License
-
-MIT — use these however you like, in personal or commercial projects, no attribution required.
+Six more, aimed at things that cost money when they go wrong: migrations that lock production tables, breaking API changes, secrets in config, env vars undefined in fresh environments. [$7 on Gumroad](https://claudedesign.gumroad.com/l/mqggk). Everything above stays free.
 
 ## Contributing
 
-Found a bug in one of these, or have an idea for a skill that's genuinely useful (not just a wrapper around an existing CLI command)? Open an issue or PR.
+Issues and PRs welcome, especially if a skill gives you a bad result — that's more useful than a star.
